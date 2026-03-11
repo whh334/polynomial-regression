@@ -1,0 +1,45 @@
+---
+title: "L01 DEMO"
+subtitle: "seaborn 绘图"
+author: "曾永艺"
+date: 2026-03-02
+format: html
+lang: zh
+---
+
+[`Seaborn`](https://seaborn.pydata.org/) 是一个基于 `matplotlib` 的 Python 数据可视化库。它提供了一个高级界面，用于绘制有吸引力且信息丰富的统计图形。
+
+## 1. 导入 `seaborn` 包
+
+```{python}
+#| code-fold: true
+import seaborn as sns
+sns.set_theme(style="darkgrid")
+```
+
+## 2. 加载 tips 数据集
+
+```{python}
+tips = sns.load_dataset("tips")
+tips.head()
+```
+
+## 3. 绘制统计图
+
+@fig-tips 绘制的是“具有边际分布的线性回归拟合图”（Linear regression with marginal distributions），原始代码参见来自[官方示例文档](https://seaborn.pydata.org/examples/regression_marginals.html)。
+
+```{python}
+#| label: fig-tips
+#| code-fold: true
+#| echo: fenced
+#| fig-cap: “具有边际分布的线性回归拟合图”
+#| fig-align: center
+#| fig-link: https://seaborn.pydata.org/examples/regression_marginals.html
+g = sns.jointplot(
+    x="total_bill", y="tip", data=tips,
+                  kind="reg", truncate=False,
+                  xlim=(0, 60), ylim=(0, 12),
+                  color="m", height=7)
+```
+
+
